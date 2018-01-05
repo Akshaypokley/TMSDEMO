@@ -196,6 +196,7 @@ public class tmsDemo {
                     switch(objectName)
                     {
                         case "Add Assignment":
+                            Thread.sleep(3000);
                             driver.findElement(By.xpath(".//*[@id='submit']")).click();
                             Result="pass";
                             break;
@@ -255,11 +256,23 @@ public class tmsDemo {
                         case "Client Attachments":
                             driver.findElement(By.xpath(".//*[@id='file']")).click();
                             Thread.sleep(600);
-                            AttachFuntn(driver, "G:\\The.docx");
+                            AttachFuntn(driver, "E:\\Akshay\\Select.pdf");
                             Result="pass";
 
                     }
                             break;
+
+                case "CLOSED":
+
+                    switch (objectName)
+                    {
+                        case "Browser Closed":
+                            Thread.sleep(2000);
+                            driver.close();
+                            Result="pass";
+
+                    }
+                    break;
 
                 case "MENU":
 
@@ -320,6 +333,7 @@ public class tmsDemo {
                             System.out.println(NM);
                             if(NM.isEmpty())
                             {
+                                name.click();
                                 try {
 
                                     driver.manage().timeouts().implicitlyWait(30,TimeUnit.SECONDS);
@@ -346,33 +360,22 @@ public class tmsDemo {
                                     if (!String.matcher(NM).matches()) {
                                         try {
 
-                                                if (Actual.equals(Expected)) {
-                                                    Result = "pass";
-                                                } else {
-                                                    Result = "Fail";
-                                                }
-                                                System.out.println(Actual);
-                                                //    Thread.sleep(50);
+                                            if (Actual.equals(Expected)) {
+                                                Result = "pass";
+                                            } else {
+                                                Result = "Fail";
+                                            }
+                                            System.out.println(Actual);
+                                            //    Thread.sleep(50);
 
 
                                         } catch (Throwable e) {
-                                            Actual = "Alert message not display .";
+                                            Actual = "Validation message not there.";
                                             Result = "Fail";
                                         }
-                                    } else {
-                                        Result = "pass";
-                                        System.out.println(NM);
-                                        System.out.println(Result);
-                                    }
-                                } else {
-                                    if (Actual.equals(Expected)) {
-                                        Result = "pass";
-                                    } else {
-                                        Result = "Fail";
+
                                     }
                                 }
-
-
 
 
                     }
@@ -400,6 +403,8 @@ public class tmsDemo {
                                 Result="pass";
                             }catch (Throwable j)
                             {
+                                Result="fail";
+                            Actual=j.getMessage();
                                 System.out.println(j.getMessage());
                             }
 
