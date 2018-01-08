@@ -196,7 +196,7 @@ public class tmsDemo {
                     switch(objectName)
                     {
                         case "Add Assignment":
-                            Thread.sleep(3000);
+                            Thread.sleep(7000);
                             driver.findElement(By.xpath(".//*[@id='submit']")).click();
                             Result="pass";
                             break;
@@ -210,7 +210,7 @@ public class tmsDemo {
                             driver.findElement(By.xpath(".//*[@id='add-assign']/div/div[4]/div/div[2]/div/div[1]/div[1]/div/div[1]/label/input")).click();
                             WebElement Bank=driver.findElement(By.xpath(".//*[@id='add-assign']/div/div[4]/div/div[2]/div/div[1]/div[1]/div/div[2]/select"));
                             Select combo1=new Select(Bank);
-                            combo1.selectByVisibleText(value);
+                            combo1.selectByVisibleText(value);Result="pass";
 
                             break;
 
@@ -218,20 +218,20 @@ public class tmsDemo {
                             driver.findElement(By.xpath(".//*[@id='add-assign']/div/div[4]/div/div[2]/div/div[1]/div[2]/div/div[1]/label/input")).click();
                             WebElement om=driver.findElement(By.xpath(".//*[@id='add-assign']/div/div[4]/div/div[2]/div/div[1]/div[2]/div/div[2]/select"));
                             Select combo2=new Select(om);
-                            combo2.selectByVisibleText(value);
+                            combo2.selectByVisibleText(value);Result="pass";
 
                             break;
                         case "Online Writers":
                             driver.findElement(By.xpath(".//*[@id='add-assign']/div/div[4]/div/div[2]/div/div[2]/div[1]/div/div[1]/label/input")).click();
                             WebElement ow=driver.findElement(By.xpath(".//*[@id='add-assign']/div/div[4]/div/div[2]/div/div[1]/div[2]/div/div[2]/select"));
                             Select combo3=new Select(ow);
-                            combo3.selectByVisibleText(value);
+                            combo3.selectByVisibleText(value);Result="pass";
                             break;
                         case "Offline Writers":
                             driver.findElement(By.xpath(".//*[@id='add-assign']/div/div[4]/div/div[2]/div/div[2]/div[2]/div/div[1]/label/input")).click();
                             WebElement ow1=driver.findElement(By.xpath(".//*[@id='add-assign']/div/div[4]/div/div[2]/div/div[2]/div[2]/div/div[2]/select"));
                             Select combo=new Select(ow1);
-                            combo.selectByVisibleText(value);
+                            combo.selectByVisibleText(value);Result="pass";
                             break;
 
                         case "Online ProofReaders":
@@ -239,13 +239,13 @@ public class tmsDemo {
                             driver.findElement(By.xpath(".//*[@id='add-assign']/div/div[4]/div/div[2]/div/div[3]/div[1]/div/div[1]/label/input")).click();
                             WebElement ow11=driver.findElement(By.xpath(".//*[@id='add-assign']/div/div[4]/div/div[2]/div/div[3]/div[1]/div/div[2]/select"));
                             Select combo11=new Select(ow11);
-                            combo11.selectByVisibleText(value);
+                            combo11.selectByVisibleText(value);Result="pass";
                             break;
                         case "Offline ProofReaders":
                             driver.findElement(By.xpath(".//*[@id='add-assign']/div/div[4]/div/div[2]/div/div[3]/div[2]/div/div[1]/label/input")).click();
                             WebElement ow111=driver.findElement(By.xpath(".//*[@id='add-assign']/div/div[4]/div/div[2]/div/div[3]/div[2]/div/div[2]/select"));
                             Select combo111=new Select(ow111);
-                            combo111.selectByVisibleText(value);
+                            combo111.selectByVisibleText(value);Result="pass";
                             break;
 
                     }
@@ -254,11 +254,17 @@ public class tmsDemo {
                     switch (objectName)
                     {
                         case "Client Attachments":
-                            driver.findElement(By.xpath(".//*[@id='file']")).click();
-                            Thread.sleep(600);
-                            AttachFuntn(driver, "E:\\Akshay\\Select.pdf");
-                            Result="pass";
-
+                            try {
+                                Thread.sleep(600);
+                                driver.findElement(By.xpath(".//*/div/div[4]/div/div[1]/div[1]/div/div[1]/div[3]/div[2]/div")).click();
+                                Thread.sleep(600);
+                                AttachFuntn(driver, "G:\\The.docx");
+                                Result = "pass";
+                            }catch (Throwable d)
+                            {
+                                Result="fail";
+                                Actual="Attach button not present.";
+                            }
                     }
                             break;
 
@@ -388,8 +394,9 @@ public class tmsDemo {
                     switch (objectName) {
 
                         case "Deadline":
-                            WebElement dateBox = driver.findElement(By.xpath(".//*[@id='add-assign']/div/div[1]/div[4]/div/div[1]/div/input"));
-                            dateBox.sendKeys("0922018");
+                            WebElement dateBox = driver.findElement(By.xpath(".//*[@id='datepicker']"));
+                            dateBox.sendKeys("01/17/2018 08:25 AM");
+                            dateBox.click();
                             Result="pass";
 
                         break;
@@ -485,7 +492,7 @@ public class tmsDemo {
         Object[][] object = null;
         FileInputStream fis = new FileInputStream("ExcelData/InputData/TMSData.xls");
         HSSFWorkbook wb = new HSSFWorkbook(fis);
-        HSSFSheet sh = wb.getSheet("Applicant");
+        HSSFSheet sh = wb.getSheet("TMS");
         //  HSSFRow rows = sh.getRow(1);
 //Read keyword sheet
 //Find number of rows in Expl.excel file
